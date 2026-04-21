@@ -2,7 +2,7 @@
 session_start();
 include 'conexion.php';
 
-// Lógica de Login (Punto 3)
+
 if (isset($_POST['login'])) {
     $user = $_POST['usuario'];
     $pass = $_POST['clave'];
@@ -17,7 +17,6 @@ if (isset($_POST['login'])) {
     }
 }
 
-// Cerrar sesión
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: index.php");
@@ -49,7 +48,7 @@ if (isset($_GET['logout'])) {
         </div>
     <?php else: ?>
         <div class="alert alert-success d-flex justify-content-between align-items-center">
-            <span>Bienvenido/a, <strong><?php echo $_SESSION['usuario_logueado']; ?></strong> (Modo Editor)</span>
+            <span>Bienvenido/a, <strong><?php echo $_SESSION['usuario_logueado']; ?></strong></span>
             <a href="?logout=true" class="btn btn-sm btn-danger">Cerrar Sesión</a>
         </div>
 
@@ -65,7 +64,7 @@ if (isset($_GET['logout'])) {
                     <input type="number" step="0.01" name="precio" class="form-control" required>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Categoría (Input Select):</label>
+                    <label class="form-label">Categoría:</label>
                     <select name="categoria" class="form-select" required>
                         <option value="Electrónica">Electrónica</option>
                         <option value="Abarrotes">Abarrotes</option>
@@ -74,7 +73,7 @@ if (isset($_GET['logout'])) {
                     </select>
                 </div>
                 <div class="col-md-2 text-center">
-                    <label class="form-label d-block">Disponible (Radio):</label>
+                    <label class="form-label d-block">Disponible:</label>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="disponible" value="1" checked> Sí
                     </div>
@@ -103,7 +102,7 @@ if (isset($_GET['logout'])) {
             </thead>
             <tbody>
                 <?php
-                // Los datos van ordenados por nombre (Punto 3)
+                
                 $sql = "SELECT * FROM productos ORDER BY nombre ASC";
                 $res = $conexion->query($sql);
                 while ($p = $res->fetch_assoc()):
