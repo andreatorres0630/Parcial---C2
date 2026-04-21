@@ -88,7 +88,7 @@ if (isset($_GET['logout'])) {
         </div>
     <?php endif; ?>
 
-    <h3 class="mb-3">Catálogo General (Vista Pública)</h3>
+    <h3 class="mb-3">Catálogo General</h3>
     <div class="table-responsive bg-white p-3 shadow-sm rounded">
         <table class="table table-hover">
             <thead class="table-primary">
