@@ -3,13 +3,12 @@
 
 # Tienda en línea Walmart El Salvador 🛒🇸🇻
 
-**Crendenciales para acceder al sitio**
-
+### Credenciales de acceso
 ---
- Usuario: admin
- 
- Contraseña: 123
- 
+```
+Usuario: admin
+Contraseña: 123
+```
  ---
 
 # ¿Cómo manejan la conexión a la BD y qué pasa si algunos de los datos son incorrectos? Justifiquen la manera de validación de la conexión.
