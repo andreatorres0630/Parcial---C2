@@ -21,7 +21,22 @@ if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: index.php");
 }
+
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
+}
+
 ?>
+
+<?php if (isset($_SESSION['mensaje'])): ?>
+    <div class="alert alert-success text-center">
+        <?php 
+            echo $_SESSION['mensaje']; 
+            unset($_SESSION['mensaje']); 
+        ?>
+    </div>
+<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -29,11 +44,37 @@ if (isset($_GET['logout'])) {
     <meta charset="UTF-8">
     <title>Walmart SV - Sistema de Inventario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .navbar-custom {
+        background-color: #0055BB;
+    }
+
+    .logo {
+        height: 40px;
+    }
+    </style>
+
 </head>
 <body class="bg-light">
 
+<nav class="navbar navbar-expand-lg navbar-custom px-4">
+    <div class="container-fluid">
+
+       
+        <a class="navbar-brand d-flex align-items-center text-white" href="#">
+            <img src="Walmart1.png" class="logo me-2">
+        </a>
+
+    </div>
+</nav>
+
 <div class="container py-5">
-    <h1 class="text-center text-primary mb-4">Walmart El Salvador - Tienda en Línea</h1>
+    <h1 class="text-center titulo mb-4">Tienda en Línea</h1>
 
     <?php if (!isset($_SESSION['usuario_logueado'])): ?>
         <div class="card mx-auto shadow-sm" style="max-width: 400px;">
@@ -98,6 +139,7 @@ if (isset($_GET['logout'])) {
                     <th>Precio</th>
                     <th>Categoría</th>
                     <th>Estado</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -115,12 +157,23 @@ if (isset($_GET['logout'])) {
                     <td>
                         <?php echo $p['disponible'] ? '<span class="badge bg-success">En Stock</span>' : '<span class="badge bg-secondary">Agotado</span>'; ?>
                     </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-</body>
+                    <td>
+                        <?php if ($p['disponible']): ?>
+                            <form action="carrito.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $p['id']; ?>">
+                                <input type="hidden" name="nombre" value="<?php echo $p['nombre']; ?>">
+                                <input type="hidden" name="precio" value="<?php echo $p['precio']; ?>">
+                                <button type="submit" class="btn btn-primary btn-sm">Agregar</button>
+                            </form>
+                            <?php else: ?>
+                                <button class="btn btn-secondary btn-sm" disabled>Agotado</button>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>
