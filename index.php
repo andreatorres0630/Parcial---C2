@@ -42,7 +42,7 @@ if (!isset($_SESSION['carrito'])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Walmart SV - Sistema de Inventario</title>
+    <title>Walmart SV - Tienda en línea</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -74,12 +74,12 @@ if (!isset($_SESSION['carrito'])) {
 </nav>
 
 <div class="container py-5">
-    <h1 class="text-center titulo mb-4">Tienda en Línea</h1>
+    <h1 class="text-center text-primary mb-4">Walmart El Salvador - Tienda en Línea</h1>
 
     <?php if (!isset($_SESSION['usuario_logueado'])): ?>
         <div class="card mx-auto shadow-sm" style="max-width: 400px;">
             <div class="card-body">
-                <h4 class="card-title">Login Administrativo</h4>
+                <h4 class="card-title">Login</h4>
                 <form method="POST">
                     <input type="text" name="usuario" class="form-control mb-2" placeholder="Usuario" required>
                     <input type="password" name="clave" class="form-control mb-2" placeholder="Contraseña" required>
